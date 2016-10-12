@@ -14,8 +14,7 @@ module.exports = {
         // 加载器配置
         loaders: [
         {
-            test: /\.js$/,
-            loader: 'babel-loader!jsx-loader?harmony'
+            test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"
         },
         {
             test: /\.css$/,

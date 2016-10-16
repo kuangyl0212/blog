@@ -24,6 +24,7 @@ class MyEditor extends React.Component {
         // console.log(this.state);
         const {editorState} = this.state;
         return <div style={styles.editor}>
+            
             <button onClick={this._onBoldClick.bind(this)}>Bold</button>
             <Editor
                 editorState={editorState}

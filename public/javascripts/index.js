@@ -1,15 +1,20 @@
 'use strict';
 var React = require('react');
+// import React from 'react';
 var ReactDOM = require('react-dom');
 
 var { Router, Route, hashHistory, IndexRoute } = require('react-router');
 var Navi = require('./components/Navi');
-var Home = require('./components/Home');
+// var Home = require('./components/Home');
+
+import Home from './components/Home';
+
 var Reg = require('./components/Reg');
 var Post = require('./components/Post');
 
 var App = React.createClass({
     render(){
+        ()=>{console.log('123')};
         return (
             <div>
                 <Navi/>

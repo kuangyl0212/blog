@@ -1,8 +1,13 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #DEE1E2;
 }
 
-a {
-  color: #00B7FF;
+#app {
+  display: flex;
 }
+
+.loadingGif {
+  align-self: center;
+}
+

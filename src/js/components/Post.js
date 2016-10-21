@@ -41,11 +41,51 @@ var React = require('react');
 import UEditor from './UEditor';
 
 var Post = React.createClass({
+    getInitialState: function () {
+        return ({
+            title: '',
+            content: '',
+        })
+    },
+    componentDidMount: function () {
+    },
+    titleChange: function (event) {
+        console.log('event---',event.target.value,this.state);
+        let value = event.target.value;
+        this.setState({
+            title: value
+        })
+    },
+    submit: function () {
+        let title =this.state.title;
+        let content = this.refs.ueditor.getContent();
+        let post = {
+            title: title,
+            content: content
+        };
+        let postData = {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(post)
+        };
+        fetch('/post',postData).then(function (res) {
+            console.log('res---',res);
+            return res.json();
+        }).then((json)=>{console.log('json---',json)}).catch((err)=>{console.log('error',err)});
+    },
     render: function () {
         // console.log('render-->Post',this.props);
         return (
             <div style={styles.contentBox}>
-                <UEditor />
+                <label>
+                    标题：
+                    <input type="text" value={this.state.title} onChange={(event)=>this.titleChange(event)}/>
+                </label>
+                <UEditor ref="ueditor"/>
+                <button onClick={()=>this.submit()}>确认</button>
             </div>
         )
     }

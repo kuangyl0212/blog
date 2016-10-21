@@ -31,7 +31,7 @@ var url = 'mongodb://localhost:27017/blog';
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
-  console.log("Connected successfully to server");
+  console.log("Connected successfully to mongodb");
 
   insertDocuments(db, function() {
     db.close();
@@ -40,18 +40,22 @@ MongoClient.connect(url, function(err, db) {
 
 var app = express();
 
+// 你在逗我？用react还要什么模板引擎！
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// 静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
 
+// routes挂载到应用
 app.use('/', routes);
 app.use('/users', users);
 
@@ -69,7 +73,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.send( {
       message: err.message,
       error: err
     });
@@ -80,7 +84,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
+  res.send({
     message: err.message,
     error: {}
   });

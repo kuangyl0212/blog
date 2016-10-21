@@ -1,4 +1,3 @@
-'use strict';
 var React = require('react');
 // import React from 'react';
 var ReactDOM = require('react-dom');
@@ -14,7 +13,6 @@ var Post = require('./components/Post');
 
 var App = React.createClass({
     render(){
-        ()=>{console.log('123')};
         return (
             <div>
                 <Navi/>
@@ -22,7 +20,7 @@ var App = React.createClass({
             </div>
         )
     }
-})
+});
 
 // Render the main component into the dom
 ReactDOM.render((

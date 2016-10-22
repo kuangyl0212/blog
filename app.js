@@ -4,41 +4,22 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-
-var insertDocuments = function(db, callback) {
-  // Get the documents collection
-  // var collection = db.collection('documents');
-  // // Insert some documents
-  // collection.insertMany([
-  //   {a : 1}, {a : 2}, {a : 3}
-  // ], function(err, result) {
-  //   assert.equal(err, null);
-  //   assert.equal(3, result.result.n);
-  //   assert.equal(3, result.ops.length);
-  //   console.log("Inserted 3 documents into the collection");
-  //   callback(result);
-  // });
-};
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
-
-// Connection URL
-var url = 'mongodb://localhost:27017/blog';
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected successfully to mongodb");
-
-  insertDocuments(db, function() {
-    db.close();
-  });
-});
-
 var app = express();
+
+// 数据库连接
+mongoose.set('debug', true);
+mongoose.connect('mongodb://localhost/test');
+var db = mongoose.connection;
+db.on('error',console.error.bind(console,'连接错误:'));
+db.once('open',function(){
+  //一次打开记录
+  console.log('connected to db');
+});
 
 // 你在逗我？用react还要什么模板引擎！
 // view engine setup

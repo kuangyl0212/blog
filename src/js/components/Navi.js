@@ -18,6 +18,8 @@ class Navi extends React.Component {
     clickHandler(event) {
         // console.log('click',event.target.textContent);
         switch (event.target.textContent) {
+            case '首页':
+                break;
             case '注册':
                 break;
         }

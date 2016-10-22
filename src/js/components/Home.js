@@ -29,11 +29,12 @@ class Home extends Component{
     }
     render () {
         console.log('state---',this.state.posts);
+        let createMarkup = (htmlStr) => { return {__html: htmlStr}; };
         let articles = this.state.posts.map((obj)=>{
             console.log('obj--',obj);
             return <div key={obj._id}>
                 <h2>{obj.title}</h2>
-                {obj.content}
+                <div dangerouslySetInnerHTML={createMarkup(obj.content)}></div>
             </div>
         });
         // console.log('render-->Home',this.props);

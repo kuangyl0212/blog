@@ -32,17 +32,17 @@ var UEditor = React.createClass({
         var id = this.props.id;
         var ue = UE.getEditor(id, {
             // 工具栏，不配置有默认项目
-            toolbars: [[
-                'fullscreen', 'source', '|', 'undo', 'redo', '|',
-                'bold', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch',
-                '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
-                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
-                'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
-                'indent', '|',
-                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
-                'emotion',
-                'horizontal', '|', 'date', 'time', '|', 'insertimage'
-            ]],
+            // toolbars: [[
+            //     'fullscreen', 'source', '|', 'undo', 'redo', '|',
+            //     'bold', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch',
+            //     '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+            //     'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+            //     'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+            //     'indent', '|',
+            //     'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+            //     'emotion',
+            //     'horizontal', '|', 'date', 'time', '|', 'insertimage'
+            // ]],
             lang: 'zh-cn',
             // 字体
             'fontfamily': [

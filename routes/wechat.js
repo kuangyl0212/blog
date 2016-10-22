@@ -19,14 +19,7 @@ router.post('/', wechat(config, function (req, res, next) {
     // 微信输入信息都在req.weixin上
     var message = req.weixin;
     console.log('post /wechat',message);
-    if (message.FromUserName == 'osbCwuG8hoCX4ziilltist2-wWI8') {
-        res.reply('我知道你是杜智杰');
-    } else {
-        if (message.FromUserName == 'osbCwuPuUqWYPf4yEnDz3OvohD8Y') {
-            res.reply('自己人');
-        }
-        res.reply('Hello');
-    }
+    res.reply('Hello');
 }));
 
 module.exports = router;

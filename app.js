@@ -39,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routes挂载到应用
 app.use('/', routes);
 app.use('/users', users);
+app.use('/wechat',wechat);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

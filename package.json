@@ -27,6 +27,7 @@
     "react-router": "^2.8.1",
     "serve-favicon": "~2.3.0",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "wechat": "^2.0.3"
   }
 }

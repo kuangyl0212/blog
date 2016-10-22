@@ -25,8 +25,8 @@ router.post('/', wechat(config, function (req, res, next) {
         if (message.FromUserName == 'osbCwuPuUqWYPf4yEnDz3OvohD8Y') {
             res.reply('自己人');
         }
+        res.reply('Hello');
     }
-    res.reply('Hello');
 }));
 
 module.exports = router;

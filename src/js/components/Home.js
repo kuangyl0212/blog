@@ -42,7 +42,7 @@ class Home extends Component{
             return <Loading />
         }
         return (
-            <div>
+            <div style={styles.container}>
                 {articles}
             </div>
         )
@@ -50,5 +50,12 @@ class Home extends Component{
 }
 
 // module.exports = Home;
+
+var styles = {
+    container: {
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
+    }
+};
 
 export default Home;

@@ -60,8 +60,9 @@ var styles = {
         top: 0,
         width: '100%',
         textAlign: 'center',
-        boxShadow: '0 1px 3px #ccc',
+        boxShadow: '0 1px 5px #dee1e2',
         backgroundColor: '#fff',
+        zIndex: 999999,
     },
     naviItem: {
         lineHeight: naviHeight,

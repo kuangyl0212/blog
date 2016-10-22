@@ -13,7 +13,7 @@ router.get('/', wechat(config, function (req, res, next) {
     // 微信输入信息都在req.weixin上
     console.log('get wechat');
     var message = req.weixin;
-    if (message.FromUserName === 'diaosi') {
+    if (message.FromUserName === 'duchikai') {
         // 回复屌丝(普通回复)
         res.reply('hehe');
     } else if (message.FromUserName === 'text') {
@@ -22,7 +22,7 @@ router.get('/', wechat(config, function (req, res, next) {
             content: 'text object',
             type: 'text'
         });
-    } else if (message.FromUserName === 'hehe') {
+    } else if (message.FromUserName === 'kuangyulinok') {
         // 回复一段音乐
         res.reply({
             type: "music",

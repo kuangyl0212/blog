@@ -19,7 +19,7 @@ router.post('/', wechat(config, function (req, res, next) {
     // 微信输入信息都在req.weixin上
     var message = req.weixin;
     console.log('post /wechat',message);
-    res.reply('Hello');
+    res.reply('http://119.29.230.182/');
 }));
 
 module.exports = router;

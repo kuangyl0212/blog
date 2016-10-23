@@ -14,7 +14,7 @@ var app = express();
 
 // 数据库连接
 mongoose.set('debug', true);
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost:24678/test');
 var db = mongoose.connection;
 db.on('error',console.error.bind(console,'连接错误:'));
 db.once('open',function(){

@@ -1,43 +1,5 @@
 var React = require('react');
 
-// var {Editor, EditorState, RichUtils} = require('draft-js');
-
-// class MyEditor extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {editorState: EditorState.createEmpty()};
-//         this.onChange = (editorState) => this.setState({editorState});
-//         this.handleKeyCommand = this.handleKeyCommand.bind(this);
-//     }
-//     handleKeyCommand(command) {
-//         const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
-//         if (newState) {
-//             this.onChange(newState);
-//             return 'handled';
-//         }
-//         return 'not-handled';
-//     }
-//     _onBoldClick() {
-//         this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
-//     }
-//     render() {
-//         // console.log(this.state);
-//         const {editorState} = this.state;
-//         return <div style={styles.editor}>
-//
-//             <button onClick={this._onBoldClick.bind(this)}>Bold</button>
-//             <Editor
-//                 editorState={editorState}
-//                 handleKeyCommand={this.handleKeyCommand}
-//                 onChange={this.onChange}
-//             />
-//         </div>
-//
-//     }
-// }
-
-// var MarkdownEditor = require('react-markdown-editor').MarkdownEditor;
-
 import UEditor from './UEditor';
 
 var Post = React.createClass({
@@ -50,7 +12,7 @@ var Post = React.createClass({
     componentDidMount: function () {
     },
     titleChange: function (event) {
-        console.log('event---',event.target.value,this.state);
+        // console.log('event---',event.target.value,this.state);
         let value = event.target.value;
         this.setState({
             title: value
@@ -59,22 +21,27 @@ var Post = React.createClass({
     submit: function () {
         let title =this.state.title;
         let content = this.refs.ueditor.getContent();
-        let post = {
-            title: title,
-            content: content
-        };
-        let postData = {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(post)
-        };
-        fetch('/post',postData).then(function (res) {
-            console.log('res---',res);
-            return res.json();
-        }).then((json)=>{console.log('json---',json)}).catch((err)=>{console.log('error',err)});
+        if (title != '' & content != '') {
+            let post = {
+                title: title,
+                content: content
+            };
+            let postData = {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(post)
+            };
+            fetch('/post',postData).then(function (res) {
+                // console.log('res---',res);
+                return res.json();
+            }).then((json)=>{console.log('json---',json)}).catch((err)=>{console.log('error',err)});
+        } else {
+            // todo 写一个弹窗组件替代alert
+            alert('标题或正文为空，请完善后提交！');
+        }
     },
     render: function () {
         // console.log('render-->Post',this.props);
@@ -93,12 +60,11 @@ var Post = React.createClass({
 
 var styles = {
   editor: {
-      // useless
-      // width: '100%',
-      // height: '1000px',
       padding: '1.5rem',
       borderRadius: '1rem',
       background: '#eee',
+      width: '80%',
+      margin: '0 auto'
   }
 };
 

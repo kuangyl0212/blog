@@ -8,7 +8,8 @@ var Navi = require('./components/Navi');
 
 import Home from './components/Home';
 
-var Reg = require('./components/Reg');
+import Reg from './components/users/Reg';
+
 var Post = require('./components/Post');
 
 var App = React.createClass({

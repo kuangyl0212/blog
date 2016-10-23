@@ -10,6 +10,11 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var wechat = require('./routes/wechat');
 
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
+var config = require('./common/config');
+
 var app = express();
 
 // 数据库连接
@@ -21,6 +26,19 @@ db.once('open',function(){
   //一次打开记录
   console.log('connected to db');
 });
+
+app.use(session({
+  secret: config.cookieSecret,
+  key: config.dbName,
+  cookie: { maxAge: 1000 * 60 * 60 * 24 * 30},
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({
+    host: config.dbAddress,
+    port: config.dbPort,
+    url: 'mongodb://' + config.dbAddress + '/' + config.dbName
+  })
+}));
 
 // 你在逗我？用react还要什么模板引擎！
 // view engine setup

@@ -19,11 +19,7 @@ var app = express();
 
 // 数据库连接
 mongoose.set('debug', true);
-<<<<<<< HEAD
 mongoose.connect('mongodb://' + config.dbAddress + ':' + config.dbPort + '/' + config.dbName);
-=======
-mongoose.connect('mongodb://localhost:24678/test');
->>>>>>> f8a547a02fce625d19061a50208b9d66966edb7f
 var db = mongoose.connection;
 db.on('error',console.error.bind(console,'连接错误:'));
 db.once('open',function(){

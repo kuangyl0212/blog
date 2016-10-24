@@ -2,7 +2,7 @@ module.exports = {
     blogName: 'MeCountingStars',
     headPicture: '',
     dbAddress: 'localhost',
-    dbPort: '27017',
+    dbPort: '24678',
     dbName: 'test',
     ownerName: 'Ruling',//个人姓名，显示在博主信息中
     ownerLocation: '广州',//所在地，显示在博主信息中

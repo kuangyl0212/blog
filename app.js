@@ -19,7 +19,7 @@ var app = express();
 
 // 数据库连接
 mongoose.set('debug', true);
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://' + config.dbAddress + ':' + config.dbPort + '/' + config.dbName);
 var db = mongoose.connection;
 db.on('error',console.error.bind(console,'连接错误:'));
 db.once('open',function(){
@@ -34,9 +34,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new MongoStore({
-    host: config.dbAddress,
-    port: config.dbPort,
-    url: 'mongodb://' + config.dbAddress + '/' + config.dbName
+    url: 'mongodb://' + config.dbAddress + ':' + config.dbPort + '/' + config.dbName
   })
 }));
 

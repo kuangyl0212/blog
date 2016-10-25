@@ -19,10 +19,7 @@ router.get('/home', function(req, res, next) {
         res.send(posts);
     })
 });
-router.post('/reg',function(req,res,next){
-    console.log('POST /reg');
-    res.send('post reg')
-});
+
 router.post('/post',function(req,res,next) {
     console.log('POST /post');
     var post = new Post({

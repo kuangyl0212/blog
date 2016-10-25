@@ -37,7 +37,10 @@ var Post = React.createClass({
             fetch('/post',postData).then(function (res) {
                 // console.log('res---',res);
                 return res.json();
-            }).then((json)=>{console.log('json---',json)}).catch((err)=>{console.log('error',err)});
+            }).then((json)=>{
+                // console.log('json---',json);
+            })
+                .catch((err)=>{console.log('error',err)});
         } else {
             // todo 写一个弹窗组件替代alert
             alert('标题或正文为空，请完善后提交！');

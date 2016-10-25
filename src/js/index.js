@@ -10,6 +10,8 @@ import Home from './components/Home';
 
 import Reg from './components/users/Reg';
 
+import Login from './components/users/Login';
+
 var Post = require('./components/Post');
 
 var App = React.createClass({
@@ -31,6 +33,7 @@ ReactDOM.render((
             <Route path='(home)' component={Home}/>
             <Route path='post' components={Post}/>
             <Route path='reg' component={Reg}/>
+            <Route path='login' component={Login}/>
         </Route>
     </Router>
 ), document.getElementById('app'));

@@ -19,7 +19,7 @@ class Home extends Component{
         })
             .then((res)=>{return res.json()})
             .then((json)=>{
-                console.log('json---',json);
+                // console.log('json---',json);
                 this.setState({
                     isFetching: false,
                     posts: json,
@@ -28,7 +28,7 @@ class Home extends Component{
             .catch((err)=>{console.log('error',err)});
     }
     render () {
-        console.log('state---',this.state.posts);
+        // console.log('state---',this.state.posts);
         let createMarkup = (htmlStr) => { return {__html: htmlStr}; };
         let articles = this.state.posts.map((obj)=>{
             console.log('obj--',obj);

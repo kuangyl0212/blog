@@ -7,6 +7,7 @@ var Post = React.createClass({
         return ({
             title: '',
             content: '',
+            createTime:'',
         })
     },
     componentDidMount: function () {
@@ -24,7 +25,8 @@ var Post = React.createClass({
         if (title != '' & content != '') {
             let post = {
                 title: title,
-                content: content
+                content: content,
+                createTime: new Date(),
             };
             let postData = {
                 headers: {

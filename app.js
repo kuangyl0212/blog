@@ -27,17 +27,6 @@ db.once('open',function(){
   console.log('connected to db');
 });
 
-app.use(session({
-  secret: config.cookieSecret,
-  key: config.dbName,
-  cookie: { maxAge: 1000 * 60 * 60 * 24 * 30},
-  resave: false,
-  saveUninitialized: true,
-  store: new MongoStore({
-    url: 'mongodb://' + config.dbAddress + ':' + config.dbPort + '/' + config.dbName
-  })
-}));
-
 // 你在逗我？用react还要什么模板引擎！
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -48,10 +37,21 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
 app.use(cookieParser());
+app.use(session({
+    secret: config.cookieSecret,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 30,secure: false},
+    store: new MongoStore({
+        url: 'mongodb://' + config.dbAddress + ':' + config.dbPort + '/' + config.dbName
+    })
+}));
 
 // 静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // routes挂载到应用
 app.use('/', routes);

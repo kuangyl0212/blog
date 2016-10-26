@@ -29,7 +29,9 @@ class Navi extends React.Component {
         var navView = [];
         this.state.data.map((item,i)=>{
             // console.log(item);
-            navView.push(<div key={i} style={styles.naviItem} onClick={this.clickHandler.bind(this)}><Link style={styles.link} to={item.link}>{item.name}</Link></div>)
+            navView.push(<div key={i} style={styles.naviItem} onClick={this.clickHandler.bind(this)}>
+                <Link style={styles.link} activeStyle={{color: '#099'}} to={item.link}>{item.name}</Link>
+            </div>)
         });
         return (
             <div style={styles.placeholder}>

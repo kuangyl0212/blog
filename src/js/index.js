@@ -15,6 +15,21 @@ import Login from './components/users/Login';
 var Post = require('./components/Post');
 
 var App = React.createClass({
+    componentWillMount(){
+        fetch('/users/check',{
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "GET"
+           })
+            .then((res)=>{
+                return res.json();
+            })
+            .then((result)=>{console.log('result---',result)})
+            .catch((err)=>{console.log('error',err)})
+
+    },
     render(){
         return (
             <div>

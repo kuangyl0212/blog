@@ -7,6 +7,11 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/check',function (req, res, next) {
+    console.log('get usercheck---',req.session);
+    res.send(req.session)
+});
+
 router.post('/reg', function(req,res,next) {
   var data = req.body;
 
@@ -42,7 +47,7 @@ router.post('/reg', function(req,res,next) {
 });
 
 router.post('/login',function (req,res,next) {
-    console.log('req',req.body);
+    console.log('req',req.sessionID);
     var data = req.body;
     User.findOne({email: data.email},function(err,user){
         "use strict";
@@ -52,6 +57,8 @@ router.post('/login',function (req,res,next) {
             if (user) {
                 if (user.password == data.password) {
                     // 登录成功的后端操作 todo
+                    req.session.user_id = user._id;
+                    req.session.save();
                     res.send({msg:'success'})
                 } else {
                     res.send({msg: 'pass_err'})

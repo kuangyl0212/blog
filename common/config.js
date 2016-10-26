@@ -10,5 +10,12 @@ module.exports = {
     ownerSkill: '',//主要从事领域与技能，显示在博主信息中
     motto: '',//座右铭，显示在博主信息中
     email: 'rulingfong@outlook.com',
-    cookieSecret: 'rulingBlog'
+    cookieSecret: 'rulingBlog',
+    color:{
+        color0: '#8CB194',
+        color1: '#77B483',
+        color2: '#77B4A5',
+        color3: '#BBB8AA',
+        color4: '#D1CEBC'
+    }
 };

@@ -29,13 +29,15 @@ class Home extends Component{
     }
     render () {
         // console.log('state---',this.state.posts);
-        let createMarkup = (htmlStr) => { return {__html: htmlStr}; };
+        // let createMarkup = (htmlStr) => { return {__html: htmlStr}; };
         let articles = this.state.posts.map((obj)=>{
-            console.log('obj--',obj);
-            return <div key={obj._id}>
-                <h2>{obj.title}</h2>
-                <div dangerouslySetInnerHTML={createMarkup(obj.content)}></div>
-            </div>
+            console.log('obj---',obj);
+            return (
+                <li key={obj._id} style={styles.listItem}>
+                    <h3>{obj.title}</h3>
+                </li>
+            );
+                {/*<div dangerouslySetInnerHTML={createMarkup(obj.content)}></div>*/}
         });
         // console.log('render-->Home',this.props);
         if (this.state.isFetching) {
@@ -43,7 +45,9 @@ class Home extends Component{
         }
         return (
             <div style={styles.container}>
-                {articles}
+                <ul style={styles.list}>
+                    {articles}
+                </ul>
             </div>
         )
     }
@@ -55,6 +59,15 @@ var styles = {
     container: {
         paddingLeft: '1rem',
         paddingRight: '1rem',
+    },
+    list: {
+        margin: 0,
+        padding: 0,
+    },
+    listItem: {
+        height: '5rem',
+        listStyle: 'none',
+        borderBottom: '1px solid #BBB8AA'
     }
 };
 

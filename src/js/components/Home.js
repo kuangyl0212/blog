@@ -33,11 +33,17 @@ class Home extends Component{
         // let createMarkup = (htmlStr) => { return {__html: htmlStr}; };
         let articles = this.state.posts.map((obj)=>{
             // console.log('obj---',obj);
+            let time,author;
+            try {
+                time = obj.createTime.substr(0,10);
+                author = obj.author;
+            } catch (err) {}
             return (
                 <li key={obj._id} style={styles.listItem}>
                     <Link to={'/article/'+obj._id} >
                         <h3>{obj.title}</h3>
-                        <span>{obj.createTime.substr(0,10)}</span>
+                        <span>{time}</span>
+                        <span>{author}</span>
                     </Link>
                 </li>
             );

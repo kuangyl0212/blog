@@ -46,14 +46,21 @@ class Article extends Component{
         //     {/*<div dangerouslySetInnerHTML={createMarkup(obj.content)}></div>*/}
         // });
         // console.log('render-->Home',this.props);
-        let createMarkup = (htmlStr) => { return {__html: htmlStr}; };
+
         if (this.state.isFetching) {
             return <Loading />
         }
+        let createMarkup = (htmlStr) => { return {__html: htmlStr} };
+        let time,author;
+        try {
+            time = this.state.article.createTime.substr(0,10);
+            author = this.state.article.author;
+        } catch (err) {}
         return (
             <div style={styles.container}>
                 <h2>{this.state.article.title}</h2>
-                <p>{this.state.article.createTime.substr(0,10)}</p>
+                <p>{time}</p>
+                <p>{author}</p>
                 <div dangerouslySetInnerHTML={createMarkup(this.state.article.content)}></div>
             </div>
         )

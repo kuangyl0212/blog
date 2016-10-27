@@ -10,9 +10,12 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var wechat = require('./routes/wechat');
 
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-
+// var session = require('express-session');
+// var flash = require('express-flash');
+// var passport = require('passport');
+// var MongoStore = require('connect-mongo')(session);
+// var redisStore = require('connect-redis')(session);
+// var cookieSession = require('cookie-session');
 var config = require('./common/config');
 
 var app = express();
@@ -27,31 +30,31 @@ db.once('open',function(){
   console.log('connected to db');
 });
 
-// 你在逗我？用react还要什么模板引擎！
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
-
-// uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(cookieParser());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-
-app.use(cookieParser());
-app.use(session({
-    secret: config.cookieSecret,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 30,secure: false},
-    store: new MongoStore({
-        url: 'mongodb://' + config.dbAddress + ':' + config.dbPort + '/' + config.dbName
-    })
-}));
+// app.use(session({
+//     secret: config.cookieSecret,
+//     cookie: { maxAge: 1000 * 60 * 60 * 24 * 30,secure: false},
+//     store: new MongoStore({
+//         url: 'mongodb://' + config.dbAddress + ':' + config.dbPort + '/' + config.dbName
+//     }),
+//     // store: new redisStore(),
+//     resave: false,
+//     saveUninitialized: true
+// }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(flash());
 
 // 静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
 
+// uncomment after placing your favicon in /public
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // routes挂载到应用
 app.use('/', routes);
@@ -89,5 +92,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
+// app.listen('3000');
 
 module.exports = app;

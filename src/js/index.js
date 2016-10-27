@@ -14,20 +14,23 @@ import Login from './components/users/Login';
 
 var Post = require('./components/Post');
 
+import Article from './components/Article';
+
 var App = React.createClass({
     componentWillMount(){
-        fetch('/users/check',{
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method: "GET"
-           })
-            .then((res)=>{
-                return res.json();
-            })
-            .then((result)=>{console.log('result---',result)})
-            .catch((err)=>{console.log('error',err)})
+        // 不做验证
+        // fetch('/users/check',{
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     method: "GET"
+        //    })
+        //     .then((res)=>{
+        //         return res.json();
+        //     })
+        //     .then((result)=>{console.log('result---',result)})
+        //     .catch((err)=>{console.log('error',err)})
 
     },
     render(){
@@ -49,6 +52,7 @@ ReactDOM.render((
             <Route path='post' components={Post}/>
             <Route path='reg' component={Reg}/>
             <Route path='login' component={Login}/>
+            <Route path="article/:id" component={Article}/>
         </Route>
     </Router>
 ), document.getElementById('app'));

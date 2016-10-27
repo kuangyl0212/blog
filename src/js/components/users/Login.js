@@ -63,7 +63,6 @@ export default class Login extends Component {
             };
             let postData = {
                 headers: {
-                    'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 method: "POST",
@@ -77,6 +76,8 @@ export default class Login extends Component {
                 switch (json.msg) {
                     case "success":
                         // 这是注册成功的路径
+                        // 登录成功存入token（mongodb自动生成的_id） 下次验证 或者 获取用户信息的时候用
+                        localStorage.setItem('token',json.token);
                         setTimeout(()=>{this.props.history.push('/home')},1000);
                         this.setState({
                             login_msg: '登录成功，跳到首页！'

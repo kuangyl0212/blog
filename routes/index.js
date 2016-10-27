@@ -4,14 +4,14 @@ var router = express.Router();
 var Post = require('../models/Post');
 
 /* GET home page. */
-// router.get('/', function(req, res, next) {
-//     console.log('get /111111');
-//     Post.find(function (err, posts) {
-//         if (err) return console.error(err);
-//         res.send(posts);
-//     })
+router.get('/', function(req, res, next) {
+    console.log('get /111111',req.session);
+    // Post.find(function (err, posts) {
+    //     if (err) return console.error(err);
+    //     res.send(posts);
+    // })
     
-// });
+});
 router.get('/home', function(req, res, next) {
     // console.log('get /home',req.session);
     Post
@@ -26,6 +26,14 @@ router.get('/home', function(req, res, next) {
         })
 });
 
+router.get('/article',function (req,res,next) {
+    console.log('req',req.query);
+    var id = req.query.id;
+    Post.findOne({_id: id},function (err, post) {
+        if (err) return console.error(err);
+        res.send(post);
+    })
+});
 router.post('/post',function(req,res,next) {
     // console.log('POST /post',req.session);
     var post = new Post({

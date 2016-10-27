@@ -8,8 +8,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/check',function (req, res, next) {
-    console.log('get usercheck---',req.session);
-    res.send(req.session)
+    console.log('get usercheck---');
+    res.end()
 });
 
 router.post('/reg', function(req,res,next) {
@@ -46,20 +46,18 @@ router.post('/reg', function(req,res,next) {
 
 });
 
-router.post('/login',function (req,res,next) {
-    console.log('req',req.sessionID);
+router.post('/login', function(req, res, next) {
     var data = req.body;
+    console.log('data---',data);
     User.findOne({email: data.email},function(err,user){
-        "use strict";
+        console.log('err',err,'user',user);
         if (err) {
             res.send(new Error(err))
         } else {
             if (user) {
                 if (user.password == data.password) {
                     // 登录成功的后端操作 todo
-                    req.session.user_id = user._id;
-                    req.session.save();
-                    res.send({msg:'success'})
+                    res.send({msg:'success',token:user._id});
                 } else {
                     res.send({msg: 'pass_err'})
                 }
